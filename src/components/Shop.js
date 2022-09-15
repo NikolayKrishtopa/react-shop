@@ -36,11 +36,11 @@ export default function Shop(props) {
       )}
       {items ? (
         <div className="items">
-          {items
-            .slice(itemsPerPage * (page - 1), itemsPerPage * page)
-            .map((item) => (
-              <ItemCard key={item.mainId} {...item} />
-            ))}
+          {itemsPerPage
+            ? items
+                .slice(itemsPerPage * (page - 1), itemsPerPage * page)
+                .map((item) => <ItemCard key={item.mainId} {...item} />)
+            : items.map((item) => <ItemCard key={item.mainId} {...item} />)}
         </div>
       ) : (
         <h2>Nothing found</h2>

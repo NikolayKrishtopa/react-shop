@@ -2,10 +2,10 @@ export default function ItemsPerPageMenu(props) {
   const { value, onChange } = props
 
   return (
-    <div>
-      <h3>Show items per page</h3>
-      <form>
-        <label>
+    <div className="itemsPerPage">
+      <h3 className="itemsPerPage__title">Show items per page</h3>
+      <form className="itemsPerPage__form">
+        <label className="radio">
           <input
             className="with-gap"
             name="itemsPerPage"
@@ -15,7 +15,7 @@ export default function ItemsPerPageMenu(props) {
           />
           <span>5</span>
         </label>
-        <label>
+        <label className="radio">
           <input
             className="with-gap"
             name="itemsPerPage"
@@ -25,7 +25,7 @@ export default function ItemsPerPageMenu(props) {
           />
           <span>10</span>
         </label>
-        <label>
+        <label className="radio">
           <input
             className="with-gap"
             name="itemsPerPage"
@@ -35,7 +35,7 @@ export default function ItemsPerPageMenu(props) {
           />
           <span>20</span>
         </label>
-        <label>
+        <label className="radio">
           <input
             className="with-gap"
             name="itemsPerPage"

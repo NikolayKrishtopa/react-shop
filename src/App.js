@@ -46,7 +46,9 @@ function App() {
           : e
       )
     setItems(filteredItems)
-    setPageQty(Math.ceil(filteredItems.length / itemsPerPage))
+    setPageQty(
+      Math.ceil(itemsPerPage ? filteredItems.length / itemsPerPage : 1)
+    )
   }, [category, initialItems, searchSubmitted, itemsPerPage])
 
   function handleChangeCategory(category) {
@@ -63,8 +65,6 @@ function App() {
     setPage(1)
   }
 
-  console.log(itemsPerPage)
-
   return (
     <>
       {isLoading ? (
@@ -77,18 +77,21 @@ function App() {
             onSearchChange={handleSearchChange}
             onSubmit={handleSubmitSearch}
           />
-          <TypeFilter
-            value={category}
-            onChangeValue={handleChangeCategory}
-            types={types}
-          />
-          <ItemsPerPageMenu value={itemsPerPage} onChange={setItemsPerPage} />
+          <div class="navBlock">
+            <TypeFilter
+              value={category}
+              onChangeValue={handleChangeCategory}
+              types={types}
+            />
+            <ItemsPerPageMenu value={itemsPerPage} onChange={setItemsPerPage} />
+          </div>
           <Shop
             items={items}
             category={category}
             pageQty={pageQty}
             page={page}
             onChangePage={setPage}
+            itemsPerPage={itemsPerPage}
           />
           <Footer />
         </div>
