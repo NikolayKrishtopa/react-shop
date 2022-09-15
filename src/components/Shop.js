@@ -1,7 +1,7 @@
-import Movies from './Movies'
+import ItemCard from './ItemCard'
 
-export default function Main(props) {
-  const { pageQty, page, onChangePage, movies } = props
+export default function Shop(props) {
+  const { pageQty, page, onChangePage, items, itemsPerPage } = props
   const pages = []
   for (let i = 1; i <= pageQty; i++) {
     pages.push(i)
@@ -34,7 +34,17 @@ export default function Main(props) {
           </li>
         </ul>
       )}
-      {movies ? <Movies {...props} /> : <h2>Nothing found</h2>}
+      {items ? (
+        <div className="items">
+          {items
+            .slice(itemsPerPage * (page - 1), itemsPerPage * page)
+            .map((item) => (
+              <ItemCard key={item.mainId} {...item} />
+            ))}
+        </div>
+      ) : (
+        <h2>Nothing found</h2>
+      )}
     </div>
   )
 }

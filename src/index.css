@@ -23,7 +23,7 @@ body {
   min-height: calc(100vh - 64px - 70px - 104px);
 }
 
-.movies {
+.items {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

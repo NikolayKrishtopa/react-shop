@@ -1,5 +1,5 @@
 export default function TypeFilter(props) {
-  const { value, onChangeValue } = props
+  const { value, onChangeValue, types } = props
 
   return (
     <select
@@ -8,9 +8,11 @@ export default function TypeFilter(props) {
       className="input-field col s12 typeFilter"
     >
       <option value="">Choose type</option>
-      <option value="movie">Movies</option>
-      <option value="game">Games</option>
-      <option value="series">Series</option>
+      {types.map((e) => (
+        <option key={e} value={e}>
+          {e}
+        </option>
+      ))}
     </select>
   )
 }

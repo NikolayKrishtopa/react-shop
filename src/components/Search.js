@@ -1,7 +1,5 @@
-import { useEffect } from 'react'
-
 export default function Search(props) {
-  const { search, onSearchChange, onSubmit, searchAlert } = props
+  const { search, onSearchChange, onSubmit } = props
 
   return (
     <div className="col s12 search">
@@ -22,7 +20,6 @@ export default function Search(props) {
         />
         {/* <label htmlFor="search">Search</label> */}
       </form>
-      <p className="search__error-message">{searchAlert}</p>
     </div>
   )
 }

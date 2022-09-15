@@ -2,37 +2,52 @@ import api from './utils/api'
 import { useState, useEffect } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Main from './components/Main'
+import Shop from './components/Shop'
 import Search from './components/Search'
 import Preloader from './components/Preloader'
 import TypeFilter from './components/TypeFilter'
+import ItemsPerPageMenu from './components/ItemsPerPageMenu'
 
 function App() {
-  const [movies, setMovies] = useState([])
+  const [initialItems, setInitialItems] = useState([])
+  const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [search, setSearch] = useState('')
-  const [searchSubmitted, setSearchSubmitted] = useState('matt')
+  const [searchSubmitted, setSearchSubmitted] = useState('')
   const [category, setCategory] = useState('')
   const [page, setPage] = useState(1)
   const [pageQty, setPageQty] = useState(1)
-  const [searchAlert, setSearchAlert] = useState('')
+  const [types, setTypes] = useState([])
+  const [itemsPerPage, setItemsPerPage] = useState(10)
 
   useEffect(() => {
     {
       setIsLoading(true)
       api
-        .search(searchSubmitted, page, category)
+        .getShopItemsList()
         .then((res) => {
-          setMovies(res.Search)
-          setPageQty(search ? Math.ceil(res.totalResults / 10) : 1)
+          setInitialItems(res.shop)
+          setTypes(Array.from(new Set(res.shop.map((e) => e.mainType))))
         })
+
         .catch((err) => console.log(err))
         .finally(() => {
           setIsLoading(false)
-          setSearchAlert('')
         })
     }
-  }, [searchSubmitted, page, category])
+  }, [])
+
+  useEffect(() => {
+    const filteredItems = initialItems
+      .filter((e) => (category ? e.mainType === category : e))
+      .filter((e) =>
+        searchSubmitted
+          ? e.displayName.toLowerCase().includes(searchSubmitted.toLowerCase())
+          : e
+      )
+    setItems(filteredItems)
+    setPageQty(Math.ceil(filteredItems.length / itemsPerPage))
+  }, [category, initialItems, searchSubmitted, itemsPerPage])
 
   function handleChangeCategory(category) {
     setCategory(category)
@@ -40,36 +55,36 @@ function App() {
   }
 
   function handleSearchChange(e) {
-    setSearchAlert('')
     setSearch(e.target.value)
   }
 
   function handleSubmitSearch() {
-    if (searchSubmitted === search) {
-      setSearchAlert('This value match the current search result')
-      return
-    } else {
-      setSearchSubmitted(search)
-      setPage(1)
-    }
+    setSearchSubmitted(search)
+    setPage(1)
   }
+
+  console.log(itemsPerPage)
 
   return (
     <>
       {isLoading ? (
         <Preloader />
       ) : (
-        <div className="App">
+        <div className="page">
           <Header />
           <Search
             search={search}
             onSearchChange={handleSearchChange}
             onSubmit={handleSubmitSearch}
-            searchAlert={searchAlert}
           />
-          <TypeFilter value={category} onChangeValue={handleChangeCategory} />
-          <Main
-            movies={movies}
+          <TypeFilter
+            value={category}
+            onChangeValue={handleChangeCategory}
+            types={types}
+          />
+          <ItemsPerPageMenu value={itemsPerPage} onChange={setItemsPerPage} />
+          <Shop
+            items={items}
             category={category}
             pageQty={pageQty}
             page={page}

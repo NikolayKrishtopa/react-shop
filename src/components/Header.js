@@ -3,12 +3,12 @@ export default function Header() {
     <nav>
       <div className="nav-wrapper green darken-1 header">
         <a href="#" className="brand-logo">
-          React-movies <span className="author">by Nikolay Krishtopa</span>
+          React-Shop <span className="author">by Nikolay Krishtopa</span>
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
             <a
-              href="https://github.com/NikolayKrishtopa/React-movies"
+              href="https://github.com/NikolayKrishtopa/React-shop"
               target="blank"
             >
               Project Repo
