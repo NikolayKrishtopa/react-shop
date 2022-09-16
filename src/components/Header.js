@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <nav>
-      <div className="nav-wrapper green darken-1 header">
+      <div className="nav-wrapper red accent-2 header">
         <a href="#" className="brand-logo">
           React-Shop <span className="author">by Nikolay Krishtopa</span>
         </a>

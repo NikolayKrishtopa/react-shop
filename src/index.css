@@ -16,14 +16,16 @@ body {
   background-color: #43a047;
 }
 
-.content {
+.shop {
   text-align: center;
   position: relative;
   padding: 20px 30px;
   min-height: calc(100vh - 64px - 70px - 104px);
+  max-width: 1000px;
 }
 
 .items {
+  position: relative;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -93,6 +95,70 @@ body {
   margin-right: 30px;
 }
 
+.cartButton {
+  position: relative;
+  z-index: 2;
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  /* border-radius: 50%; */
+  padding: 5px;
+  transition: transform 0.3s linear;
+  border: 2px solid yellowgreen;
+  cursor: pointer;
+}
+.cartButton:hover {
+  transform: scale(1.1);
+}
+
+.cartButton__qty {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  color: rgba(171, 8, 8, 0.78);
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.cartButton__icon {
+  margin: 0;
+}
+
+.page {
+  background-color: rgb(232, 212, 32);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  width: 100%;
+}
+
+.input-field input[type='search'] {
+  transition: none;
+}
+
+.search {
+  transition: none;
+  color: black;
+  outline: none;
+  background-color: transparent;
+}
+
+.search:focus {
+  background-color: transparent;
+  transition: none;
+}
+
+.search::placeholder {
+  color: blueviolet;
+}
+
 .itemsPerPage__title {
   padding: 0;
   margin: 0;
@@ -114,6 +180,7 @@ body {
 
 .search {
   position: relative;
+  width: 100%;
 }
 
 .search__error-message {

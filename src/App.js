@@ -7,6 +7,7 @@ import Search from './components/Search'
 import Preloader from './components/Preloader'
 import TypeFilter from './components/TypeFilter'
 import ItemsPerPageMenu from './components/ItemsPerPageMenu'
+import CartButton from './components/CartButton'
 
 function App() {
   const [initialItems, setInitialItems] = useState([])
@@ -19,7 +20,7 @@ function App() {
   const [pageQty, setPageQty] = useState(1)
   const [types, setTypes] = useState([])
   const [itemsPerPage, setItemsPerPage] = useState(10)
-
+  const [cartList, setCartList] = useState([])
   useEffect(() => {
     {
       setIsLoading(true)
@@ -65,19 +66,30 @@ function App() {
     setPage(1)
   }
 
+  function handleAddToCart(item) {
+    const added = cartList.find((e) => e.mainId === item.mainId)
+    if (!added) {
+      setCartList([...cartList, { ...item, qty: 1 }])
+    } else {
+      added.qty += 1
+    }
+    console.log(cartList)
+  }
+
   return (
     <>
       {isLoading ? (
         <Preloader />
       ) : (
         <div className="page">
+          <CartButton itemsQty={cartList.length} />
           <Header />
           <Search
             search={search}
             onSearchChange={handleSearchChange}
             onSubmit={handleSubmitSearch}
           />
-          <div class="navBlock">
+          <div className="navBlock">
             <TypeFilter
               value={category}
               onChangeValue={handleChangeCategory}
@@ -92,6 +104,7 @@ function App() {
             page={page}
             onChangePage={setPage}
             itemsPerPage={itemsPerPage}
+            onAddToCart={handleAddToCart}
           />
           <Footer />
         </div>

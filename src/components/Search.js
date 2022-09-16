@@ -14,7 +14,7 @@ export default function Search(props) {
           id="search"
           placeholder="Search"
           type="search"
-          className="validate"
+          className="validate search"
           value={search}
           onChange={onSearchChange}
         />
