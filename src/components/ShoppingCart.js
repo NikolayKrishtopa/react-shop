@@ -1,3 +1,5 @@
+import CartItem from './CartItem'
+
 export default function ShoppingCart(props) {
   const { cartList, onClose, onChangeList } = props
 
@@ -35,29 +37,13 @@ export default function ShoppingCart(props) {
         </li>
         {cartList.length ? (
           cartList.map((e) => (
-            <li key={e.mainId} className="collection-item">
-              {`${e.displayName} Qty:${e.qty} Subtotal: ${
-                e.price.regularPrice * e.qty
-              }`}
-              <i
-                className="material-icons cart__increaseButton teal-text text-lighten-1"
-                onClick={() => handleIncreaseItem(e)}
-              >
-                add
-              </i>
-              <i
-                className="material-icons cart__increaseButton teal-text text-lighten-1"
-                onClick={() => handleDecreaseItem(e)}
-              >
-                remove
-              </i>
-              <i
-                className="material-icons cart__increaseButton teal-text text-lighten-1"
-                onClick={() => handleRemoveItem(e)}
-              >
-                delete
-              </i>
-            </li>
+            <CartItem
+              key={e.mainId}
+              item={e}
+              onRemove={handleRemoveItem}
+              onIncrease={handleIncreaseItem}
+              onDecrease={handleDecreaseItem}
+            />
           ))
         ) : (
           <li className="collection-item">
@@ -66,14 +52,15 @@ export default function ShoppingCart(props) {
         )}
 
         <li className="collection-item teal lighten-1 white-text">
-          Yout total:
-          {cartList.reduce((sum, e) => e.price.regularPrice * e.qty + sum, 0)}
+          <span>Your total: </span>
+          {cartList.reduce((sum, e) => e.price.regularPrice * e.qty + sum, 0)}$
         </li>
         <li className="collection-item">
           {' '}
           <button
             className="waves-effect waves-light btn"
             disabled={!cartList.length}
+            onClick={onClose}
           >
             Proceed to checkout
           </button>

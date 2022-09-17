@@ -154,6 +154,16 @@ body {
   min-width: 600px;
 }
 
+.cart__item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4fr 4fr 2fr 2fr 1fr 1fr 1fr;
+}
+
+.cart__itemIcon {
+  text-align: center;
+}
+
 .cartButton {
   position: relative;
   z-index: 2;
