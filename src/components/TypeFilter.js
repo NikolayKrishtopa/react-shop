@@ -7,7 +7,7 @@ export default function TypeFilter(props) {
       onChange={(e) => onChangeValue(e.target.value)}
       className="input-field col s12 typeFilter"
     >
-      <option value="">Choose type</option>
+      <option value="">All categories</option>
       {types.map((e) => (
         <option key={e} value={e}>
           {e}

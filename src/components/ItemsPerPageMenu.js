@@ -17,6 +17,7 @@ export default function ItemsPerPageMenu(props) {
         </label>
         <label className="radio">
           <input
+            checked={value === 10}
             className="with-gap"
             name="itemsPerPage"
             type="radio"

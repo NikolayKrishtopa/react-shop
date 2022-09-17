@@ -16,6 +16,11 @@ body {
   background-color: #43a047;
 }
 
+.items {
+  margin: 0;
+  margin-top: 5px;
+}
+
 .shop {
   text-align: center;
   position: relative;
@@ -33,6 +38,35 @@ body {
 
 .card {
   box-shadow: 5px 2px 10px rgb(193, 184, 184);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content {
+  flex-grow: 1;
+}
+
+.card__buy {
+  padding: 0 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__content {
+  padding: 10px;
+  /* flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between; */
+}
+
+.card__price {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.card .card__content {
+  padding: 10px;
 }
 
 .preloader {
@@ -95,14 +129,39 @@ body {
   margin-right: 30px;
 }
 
+.cart {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.cart__closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.cart__content {
+  position: relative;
+  min-width: 600px;
+}
+
 .cartButton {
   position: relative;
   z-index: 2;
   position: fixed;
   top: 80px;
   right: 30px;
-  /* border-radius: 50%; */
-  padding: 5px;
+  border-radius: 5%;
+  padding: 0;
   transition: transform 0.3s linear;
   border: 2px solid yellowgreen;
   cursor: pointer;
@@ -113,13 +172,12 @@ body {
 
 .cartButton__qty {
   position: absolute;
-  bottom: 3px;
-  right: 3px;
-  color: rgba(171, 8, 8, 0.78);
+  bottom: 50%;
+  right: 43%;
+  color: rgb(212, 255, 0);
   margin: 0;
   padding: 0;
-  font-weight: bold;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .cartButton__icon {
@@ -136,6 +194,8 @@ body {
 }
 
 .footer {
+  padding: 25px 0;
+  margin: 0;
   width: 100%;
 }
 

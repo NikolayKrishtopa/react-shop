@@ -8,6 +8,7 @@ import Preloader from './components/Preloader'
 import TypeFilter from './components/TypeFilter'
 import ItemsPerPageMenu from './components/ItemsPerPageMenu'
 import CartButton from './components/CartButton'
+import ShoppingCart from './components/ShoppingCart'
 
 function App() {
   const [initialItems, setInitialItems] = useState([])
@@ -21,6 +22,7 @@ function App() {
   const [types, setTypes] = useState([])
   const [itemsPerPage, setItemsPerPage] = useState(10)
   const [cartList, setCartList] = useState([])
+  const [isCartOpen, setIsCartOpen] = useState(false)
   useEffect(() => {
     {
       setIsLoading(true)
@@ -73,7 +75,6 @@ function App() {
     } else {
       added.qty += 1
     }
-    console.log(cartList)
   }
 
   return (
@@ -82,7 +83,10 @@ function App() {
         <Preloader />
       ) : (
         <div className="page">
-          <CartButton itemsQty={cartList.length} />
+          <CartButton
+            itemsQty={cartList.length}
+            onClick={() => setIsCartOpen(true)}
+          />
           <Header />
           <Search
             search={search}
@@ -95,7 +99,13 @@ function App() {
               onChangeValue={handleChangeCategory}
               types={types}
             />
-            <ItemsPerPageMenu value={itemsPerPage} onChange={setItemsPerPage} />
+            <ItemsPerPageMenu
+              value={itemsPerPage}
+              onChange={(itemsPerPage) => {
+                setItemsPerPage(itemsPerPage)
+                setPage(1)
+              }}
+            />
           </div>
           <Shop
             items={items}
@@ -107,6 +117,14 @@ function App() {
             onAddToCart={handleAddToCart}
           />
           <Footer />
+          {isCartOpen && (
+            <ShoppingCart
+              cartList={cartList}
+              isOpen={isCartOpen}
+              onClose={() => setIsCartOpen(false)}
+              onChangeList={setCartList}
+            />
+          )}
         </div>
       )}
     </>
