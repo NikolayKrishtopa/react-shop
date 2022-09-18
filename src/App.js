@@ -50,6 +50,7 @@ function App() {
           ? e.displayName.toLowerCase().includes(searchSubmitted.toLowerCase())
           : e
       )
+    setTypes(Array.from(new Set(filteredItems.map((e) => e.mainType))))
     setItems(filteredItems)
     setPageQty(
       Math.ceil(itemsPerPage ? filteredItems.length / itemsPerPage : 1)

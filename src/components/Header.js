@@ -2,7 +2,10 @@ export default function Header() {
   return (
     <nav>
       <div className="nav-wrapper red accent-2 header">
-        <a href="#" className="brand-logo">
+        <a
+          href="https://nikolaykrishtopa.github.io/react-shop/"
+          className="brand-logo"
+        >
           React-Shop <span className="author">by Nikolay Krishtopa</span>
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
