@@ -3,7 +3,7 @@ export default function CheckoutForm(props) {
   return (
     <div className="row  checkoutForm">
       <i
-        className="material-icons medium cart__closeButton cart__closeButton_type_form white-text"
+        className="material-icons cart__closeButton cart__closeButton_type_form dark-blue-text"
         onClick={onClose}
       >
         close
