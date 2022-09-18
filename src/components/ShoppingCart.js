@@ -53,12 +53,12 @@ export default function ShoppingCart(props) {
               />
             ))
           ) : (
-            <li className="collection-item">
+            <li className="collection-item cart__item">
               <span>Your cart is empty</span>
             </li>
           )}
 
-          <li className="collection-item teal lighten-1 white-text">
+          <li className="collection-item teal lighten-1 white-text cart__item">
             <span>Your total: </span>
             {cartList.reduce((sum, e) => e.price.regularPrice * e.qty + sum, 0)}
             $

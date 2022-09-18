@@ -23,6 +23,7 @@ body {
   }
 }
 .alert {
+  z-index: 3;
   position: fixed;
   right: 1rem;
   top: 10rem;
@@ -179,8 +180,10 @@ body {
 }
 
 .cart__content {
+  max-width: 90%;
   position: relative;
-  /* min-width: 600px; */
+  width: 50rem;
+  min-width: 300px;
 }
 
 .cart__item {
@@ -321,5 +324,16 @@ body {
   }
   .header {
     padding: 0;
+  }
+  .cart__item {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  .brand-logo {
+    font-size: 20px !important;
+    left: 120px !important;
+  }
+  .author {
+    font-size: 10px;
   }
 }
