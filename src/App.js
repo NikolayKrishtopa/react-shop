@@ -9,6 +9,7 @@ import TypeFilter from './components/TypeFilter'
 import ItemsPerPageMenu from './components/ItemsPerPageMenu'
 import CartButton from './components/CartButton'
 import ShoppingCart from './components/ShoppingCart'
+import Alert from './components/Alert'
 
 function App() {
   const [initialItems, setInitialItems] = useState([])
@@ -23,6 +24,7 @@ function App() {
   const [itemsPerPage, setItemsPerPage] = useState(10)
   const [cartList, setCartList] = useState([])
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const [recentlyAddedItemName, setRecentlyAddedItemName] = useState('')
   useEffect(() => {
     {
       setIsLoading(true)
@@ -69,6 +71,7 @@ function App() {
   }
 
   function handleAddToCart(item) {
+    setRecentlyAddedItemName(item.displayName)
     const added = cartList.find((e) => e.mainId === item.mainId)
     if (!added) {
       setCartList([...cartList, { ...item, qty: 1 }])
@@ -123,6 +126,12 @@ function App() {
               isOpen={isCartOpen}
               onClose={() => setIsCartOpen(false)}
               onChangeList={setCartList}
+            />
+          )}
+          {recentlyAddedItemName.length > 0 && (
+            <Alert
+              itemName={recentlyAddedItemName}
+              onClear={() => setRecentlyAddedItemName('')}
             />
           )}
         </div>
